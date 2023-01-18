@@ -21,6 +21,7 @@ const SeachResults = () => {
         const controller = new AbortController()
         const body: any = {
             query: searchParams.get("query"),
+            metaphor: searchParams.get("metaphor"),
         }
         if (
             searchParams.get("filter") &&

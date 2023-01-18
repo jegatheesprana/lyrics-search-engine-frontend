@@ -64,12 +64,23 @@ export default function Filter({ open, handleClose }: any) {
             <DialogTitle>Advanced Search</DialogTitle>
             <DialogContent>
                 <TextField
+                    fullWidth
                     sx={{ mt: 2 }}
                     id="outlined-basic"
                     label="Search name"
                     variant="outlined"
                     value={filters.query || ""}
                     name="query"
+                    onChange={handleTextChange}
+                />
+                <TextField
+                    fullWidth
+                    sx={{ mt: 2 }}
+                    id="outlined-metaphor"
+                    label="Metaphor"
+                    variant="outlined"
+                    value={filters.metaphor || ""}
+                    name="metaphor"
                     onChange={handleTextChange}
                 />
                 <FormGroup>
