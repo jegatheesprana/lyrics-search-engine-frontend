@@ -16,7 +16,7 @@ const SeachResults = () => {
     const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
-        if (!searchParams.get("query")) return
+        if (!searchParams.get("query") && !searchParams.get("metaphor")) return
         setLoading(true)
         const controller = new AbortController()
         const body: any = {

@@ -6,7 +6,15 @@ import SeachResults from "./components/SearchResults"
 function App() {
     const [searchParams] = useSearchParams()
 
-    return <>{searchParams.get("query") ? <SeachResults /> : <EmptyQuery />}</>
+    return (
+        <>
+            {searchParams.get("query") || searchParams.get("metaphor") ? (
+                <SeachResults />
+            ) : (
+                <EmptyQuery />
+            )}
+        </>
+    )
 }
 
 export default App
