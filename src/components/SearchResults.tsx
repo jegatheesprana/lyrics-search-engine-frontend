@@ -7,6 +7,8 @@ import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import CircularProgress from "@mui/material/CircularProgress"
 import Typography from "@mui/material/Typography"
+import Grid from "@mui/material/Grid"
+import Sidebar from "./Sidebar"
 
 const SeachResults = () => {
     const [results, setResults] = useState([])
@@ -16,12 +18,18 @@ const SeachResults = () => {
     const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
-        if (!searchParams.get("query") && !searchParams.get("metaphor")) return
+        if (
+            !searchParams.get("query") &&
+            !searchParams.get("metaphor") &&
+            !searchParams.get("year")
+        )
+            return
         setLoading(true)
         const controller = new AbortController()
         const body: any = {
             query: searchParams.get("query"),
             metaphor: searchParams.get("metaphor"),
+            year: searchParams.get("year"),
         }
         if (
             searchParams.get("filter") &&
@@ -70,33 +78,45 @@ const SeachResults = () => {
             >
                 <SearchBox />
             </Box>
-            <Box>
-                <Typography sx={{ my: 1.5 }} color="text.secondary">
-                    {`${resultDetails.total_results} results (${
-                        resultDetails.time / 1000
-                    } seconds)`}
-                </Typography>
-            </Box>
-            <Box py={2}>
-                {loading ? (
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: 100,
-                        }}
-                    >
-                        <CircularProgress />
+            {!loading && (
+                <Box>
+                    <Typography sx={{ my: 1.5 }} color="text.secondary">
+                        {`${resultDetails.total_results} results (${
+                            resultDetails.time / 1000
+                        } seconds)`}
+                    </Typography>
+                </Box>
+            )}
+            <Grid container spacing={4}>
+                <Grid item xs={8}>
+                    <Box py={2}>
+                        {loading ? (
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: 100,
+                                }}
+                            >
+                                <CircularProgress />
+                            </Box>
+                        ) : (
+                            <Stack spacing={2}>
+                                {results.map((result: any, id: number) => (
+                                    <SearchResultItem
+                                        result={result}
+                                        key={id}
+                                    />
+                                ))}
+                            </Stack>
+                        )}
                     </Box>
-                ) : (
-                    <Stack spacing={2}>
-                        {results.map((result: any, id: number) => (
-                            <SearchResultItem result={result} key={id} />
-                        ))}
-                    </Stack>
-                )}
-            </Box>
+                </Grid>
+                <Grid item xs={4}>
+                    <Sidebar />
+                </Grid>
+            </Grid>
         </Container>
     )
 }

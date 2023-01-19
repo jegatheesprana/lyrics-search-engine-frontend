@@ -11,6 +11,7 @@ import Checkbox from "@mui/material/Checkbox"
 import DialogTitle from "@mui/material/DialogTitle"
 import Slide from "@mui/material/Slide"
 import TextField from "@mui/material/TextField"
+import Box from "@mui/material/Box"
 
 const Transition = forwardRef(function Transition(props, ref) {
     // @ts-ignore
@@ -83,16 +84,16 @@ export default function Filter({ open, handleClose }: any) {
                     name="metaphor"
                     onChange={handleTextChange}
                 />
-                <FormGroup>
+                <Box sx={{ mt: 2 }}>
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={!!filters.year}
-                                name="year"
+                                checked={!!filters.lyrics}
+                                name="lyrics"
                                 onChange={handleChange}
                             />
                         }
-                        label="Year"
+                        label="Lyrics"
                     />
                     <FormControlLabel
                         control={
@@ -144,7 +145,7 @@ export default function Filter({ open, handleClose }: any) {
                         }
                         label="Composer"
                     />
-                </FormGroup>
+                </Box>
                 <Button
                     variant="outlined"
                     fullWidth

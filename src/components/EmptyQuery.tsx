@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box"
 import SearchBox from "./SearchBox"
+import Container from "@mui/material/Container"
 
 const EmptyQuery = () => {
     return (
@@ -12,7 +13,9 @@ const EmptyQuery = () => {
                 alignItems: "center",
             }}
         >
-            <SearchBox />
+            <Container maxWidth="md">
+                <SearchBox />
+            </Container>
         </Box>
     )
 }

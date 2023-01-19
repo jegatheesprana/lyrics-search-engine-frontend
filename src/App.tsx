@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
 import "./App.css"
 import EmptyQuery from "./components/EmptyQuery"
@@ -8,7 +9,9 @@ function App() {
 
     return (
         <>
-            {searchParams.get("query") || searchParams.get("metaphor") ? (
+            {searchParams.get("query") ||
+            searchParams.get("metaphor") ||
+            searchParams.get("year") ? (
                 <SeachResults />
             ) : (
                 <EmptyQuery />

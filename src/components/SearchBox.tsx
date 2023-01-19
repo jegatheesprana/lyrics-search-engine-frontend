@@ -57,9 +57,9 @@ const SearchBox = () => {
     useEffect(() => {
         if (!searchParams.get("query")) return
         // @ts-ignore
-        setQuery(searchParams.get("query"))
+        setQuery(searchParams.get("query") || "")
         // @ts-ignore
-        setMetaphor(searchParams.get("metaphor"))
+        setMetaphor(searchParams.get("metaphor") || "")
     }, [searchParams])
 
     useEffect(() => {
